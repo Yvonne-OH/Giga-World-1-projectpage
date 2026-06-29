@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
     <link rel="apple-touch-icon" href="assets/page-logo.png" />
-    <link rel="stylesheet" href="style.css?v=42" />
+    <link rel="stylesheet" href="style.css?v=44" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
@@ -892,14 +892,14 @@
                     <div class="video-cell">
                         <div class="video-cell-title">NUScenes driving</div>
                         <div class="video-card">
-                            <video src="video/model_trans/nus/combined_annotated.mp4" controls autoplay muted loop
+                            <video src="video/model_trans/nus/飞书20260629-234106.mp4" controls autoplay muted loop
                                 playsinline preload="metadata"></video>
                         </div>
                     </div>
                     <div class="video-cell">
                         <div class="video-cell-title">AGI manipulation</div>
                         <div class="video-card">
-                            <video src="video/model_trans/agi/global_step1600_validation_video_0_A_robotic_arm_with_black,_annotated.mp4" controls autoplay muted loop
+                            <video src="video/model_trans/agi/episode_000014_90s_125s_10fps_annotated.mp4" controls autoplay muted loop
                                 playsinline preload="metadata"></video>
                         </div>
                     </div>
@@ -908,12 +908,13 @@
 
             <div class="ood-subgroup">
                 <div class="ood-subgroup-title">Geometric Conditioning</div>
-                <div class="fig-container" style="margin: 0 auto 1.2rem; max-width: 760px;">
-                    <img src="images/Geometric%20Conditioning/first_frame.png" alt="First frame condition"
-                        style="width: 100%; max-width: 760px;" />
-                    <div class="fig-caption">First frame condition</div>
-                </div>
-                <div class="video-grid video-grid--2col video-grid--aspect">
+                <div class="video-grid video-grid--3col video-grid--aspect geometric-grid">
+                    <div class="video-cell">
+                        <div class="video-cell-title">First frame condition</div>
+                        <div class="video-card geometric-image-card">
+                            <img src="images/Geometric%20Conditioning/first_frame.png" alt="First frame condition" />
+                        </div>
+                    </div>
                     <div class="video-cell">
                         <div class="video-cell-title">Sobel + Video</div>
                         <div class="video-card">
