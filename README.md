@@ -1,10 +1,10 @@
 # Giga-World-1-projectpage
 
-🔗 Live page: <https://yvonne-oh.github.io/Giga-World-1-projectpage>
+🔗 Live page: <https://open-gigaai.github.io/giga-world-1/>
 
 ## Website Structure
 
-```
+```text
 github_page/
 ├── index.html        # The full project page
 ├── style.css         # All styling
@@ -36,16 +36,16 @@ python3 -m http.server 8765
 
 ## Deploy to GitHub Pages
 
-The site is published from the `main` branch root.
+The site is published from the `website` branch root.
 
 1. Push to GitHub:
    ```bash
-   git push origin main
+   git push origin HEAD:website
    ```
 2. On GitHub, open **Settings → Pages** for the repository.
 3. Under **Source**, choose **Deploy from a branch**.
-4. Set **Branch** to `main` and folder to `/ (root)`, then **Save**.
+4. Set **Branch** to `website` and folder to `/ (root)`, then **Save**.
 5. Wait ~1 minute for the first deploy. The page will be live at:
-   ```
-   https://yvonne-oh.github.io/Giga-World-1-projectpage/
+   ```text
+   https://open-gigaai.github.io/giga-world-1/
    ```
