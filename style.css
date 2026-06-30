@@ -532,6 +532,7 @@ body {
 /* ---- CC Tabs ---- */
 .cc-tabs,
 .ood-tabs,
+.vlm-tabs,
 .rl-tabs {
     display: flex;
     justify-content: center;
@@ -542,6 +543,7 @@ body {
 
 .cc-tab,
 .ood-tab,
+.vlm-tab,
 .rl-tab {
     padding: 0.6rem 1.6rem;
     border: 1px solid var(--border);
@@ -557,6 +559,7 @@ body {
 
 .cc-tab:hover,
 .ood-tab:hover,
+.vlm-tab:hover,
 .rl-tab:hover {
     border-color: var(--primary);
     color: var(--primary);
@@ -565,6 +568,7 @@ body {
 
 .cc-tab.active,
 .ood-tab.active,
+.vlm-tab.active,
 .rl-tab.active {
     background: var(--primary);
     color: #fff;
@@ -574,6 +578,7 @@ body {
 
 .cc-panel,
 .ood-panel,
+.vlm-panel,
 .rl-panel {
     display: none;
     animation: ccPanelFade 0.35s ease;
@@ -581,6 +586,7 @@ body {
 
 .cc-panel.active,
 .ood-panel.active,
+.vlm-panel.active,
 .rl-panel.active {
     display: block;
 }
@@ -835,6 +841,42 @@ body {
     .video-grid--4col {
         grid-template-columns: 1fr;
     }
+
+    .vlm-score-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .vlm-score-strip span {
+        border-bottom: 1px solid var(--border);
+    }
+
+    .vlm-score-strip span:nth-child(2n) {
+        border-right: 0;
+    }
+
+    .vlm-eval-table,
+    .vlm-eval-table tbody,
+    .vlm-eval-table tr,
+    .vlm-eval-table th,
+    .vlm-eval-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .vlm-eval-table td:last-child {
+        width: 100%;
+        text-align: left;
+        padding-top: 0;
+    }
+
+    .vlm-reasons {
+        grid-template-columns: 1fr;
+    }
+
+    .vlm-reasons div:first-child {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
 }
 
 .video-card {
@@ -883,6 +925,139 @@ body {
 
 .video-label.fail {
     background: rgba(239, 68, 68, 0.9);
+}
+
+.vlm-video-card video {
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+}
+
+.vlm-caption {
+    padding: 0.85rem 0.95rem 1rem;
+    color: var(--text);
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.35;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), var(--card-bg));
+    border-top: 1px solid var(--border);
+}
+
+.vlm-score-strip {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--section-bg);
+}
+
+.vlm-score-strip span {
+    min-width: 0;
+    padding: 0.7rem 0.65rem;
+    border-right: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.vlm-score-strip span:last-child {
+    border-right: 0;
+}
+
+.vlm-score-strip strong {
+    display: block;
+    color: var(--text-light);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.16rem;
+}
+
+.vlm-eval-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+
+.vlm-eval-table tr {
+    border-bottom: 1px solid var(--border);
+}
+
+.vlm-eval-table th,
+.vlm-eval-table td {
+    padding: 0.75rem 0.7rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+.vlm-eval-table th {
+    width: 18%;
+    color: var(--highlight);
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.vlm-eval-table td:last-child {
+    width: 3.8rem;
+    color: var(--text-light);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+}
+
+.vlm-eval-table p,
+.vlm-reasons p {
+    margin: 0.35rem 0 0;
+    color: var(--text);
+    line-height: 1.45;
+}
+
+.vlm-badge {
+    display: inline-block;
+    padding: 0.16rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.vlm-badge.good {
+    color: #166534;
+    background: rgba(34, 197, 94, 0.16);
+}
+
+.vlm-badge.medium {
+    color: #a16207;
+    background: rgba(245, 158, 11, 0.16);
+}
+
+.vlm-badge.poor {
+    color: #b91c1c;
+    background: rgba(239, 68, 68, 0.14);
+}
+
+.vlm-badge.unclear {
+    color: #475569;
+    background: rgba(100, 116, 139, 0.15);
+}
+
+.vlm-reasons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    background: var(--card-bg);
+}
+
+.vlm-reasons div {
+    padding: 0.85rem 0.95rem 1rem;
+}
+
+.vlm-reasons div:first-child {
+    border-right: 1px solid var(--border);
+}
+
+.vlm-reasons strong {
+    color: var(--highlight);
+    font-size: 0.8rem;
 }
 
 .ood-desc {

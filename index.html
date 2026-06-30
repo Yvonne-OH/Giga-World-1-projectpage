@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
     <link rel="apple-touch-icon" href="assets/page-logo.png" />
-    <link rel="stylesheet" href="style.css?v=44" />
+    <link rel="stylesheet" href="style.css?v=46" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
@@ -55,6 +55,9 @@
             <div class="scroll-dot" data-section="ood" aria-selected="false">
                 <span class="scroll-dot-label">OOD</span>
             </div>
+            <div class="scroll-dot" data-section="vlm-evaluator" aria-selected="false">
+                <span class="scroll-dot-label">Evaluator</span>
+            </div>
             <div class="scroll-dot" data-section="transfer" aria-selected="false">
                 <span class="scroll-dot-label">Transfer</span>
             </div>
@@ -79,6 +82,7 @@
                     <li><a href="#cc">CC</a></li>
                     <li><a href="#rl">RL</a></li>
                     <li><a href="#ood">OOD</a></li>
+                    <li><a href="#vlm-evaluator">Evaluator</a></li>
                     <li><a href="#transfer">Transfer</a></li>
                     <li><a href="#flash">Flash</a></li>
                     <li><a href="#team">Team</a></li>
@@ -871,6 +875,128 @@
                 </div>
             </section>
         </div>
+
+        
+
+<!-- VLM-assisted Rollout Evaluator -->
+        <section id="vlm-evaluator" class="section">
+            <h2>VLM-assisted Rollout Evaluator</h2>
+            <div class="section-divider"></div>
+            <p style="text-align: center; color: var(--text-light); max-width: 860px; margin: 0 auto 2rem;">
+                ..............
+            </p>
+
+            <div class="vlm-tabs" role="tablist">
+                <button class="vlm-tab active" role="tab" data-tab="score1" aria-selected="true">Score 1</button>
+                <button class="vlm-tab" role="tab" data-tab="score2" aria-selected="false">Score 2</button>
+                <button class="vlm-tab" role="tab" data-tab="score3" aria-selected="false">Score 3</button>
+            </div>
+
+            <div class="vlm-panel active" role="tabpanel" data-panel="score1">
+                <div class="video-grid video-grid--2col vlm-eval-grid">
+                    <div class="video-card vlm-video-card">
+                        <video src="video/vlm_evaluator/score1/score1_01.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+                        <div class="vlm-caption">Put panda into pink plate.</div>
+                        <div class="vlm-score-strip">
+                            <span><strong>GT</strong>1</span><span><strong>Pred</strong>1</span><span><strong>Match</strong>0.763</span><span><strong>Levels</strong>All levels match</span><span><strong>Reason</strong>0.472</span>
+                        </div>
+                        <table class="vlm-eval-table">
+                            <tbody>
+                                <tr><th>Overall Video Quality</th><td><span class="vlm-badge medium">Medium</span><p>Video is split into three views, but all are shaky and blurry with frequent motion blur and fast panning.</p></td><td><span class="vlm-badge medium">Medium</span><p>Video is blurry and shaky, but objects (panda, plates, banana) are identifiable across all three views.</p></td><td>0.355</td></tr>
+                                <tr><th>Instruction Following</th><td><span class="vlm-badge poor">Poor</span><p>The robot arm attempts to pick up a panda but fails to place it into the pink plate; the panda remains on the table.</p></td><td><span class="vlm-badge poor">Poor</span><p>The robot arm attempts to grasp the panda but fails to place it into the pink plate; the panda remains on the table.</p></td><td>0.863</td></tr>
+                                <tr><th>Physical Adherence</th><td><span class="vlm-badge medium">Medium</span><p>Contact is attempted but unstable; the panda is not securely grasped or placed, and final state shows panda outside the plate.</p></td><td><span class="vlm-badge medium">Medium</span><p>The robot arm makes contact with the panda, but the grasp is unstable and the panda is not lifted or moved toward the plate.</p></td><td>0.467</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="vlm-reasons"><div><strong>GT Reason</strong><p>The robot fails to place the panda into the pink plate; the panda is not inside the plate in the final state. Video quality is shaky and blurry, but the failed task is clear.</p></div><div><strong>Pred Reason</strong><p>The robot arm attempts to grasp the panda but fails to lift or move it into the pink plate. The panda remains on the table, and the final state does not show the task completed.</p></div></div>
+                    </div>
+                    <div class="video-card vlm-video-card">
+                        <video src="video/vlm_evaluator/score1/score1_02.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+                        <div class="vlm-caption">Put green bowl into pink plate.</div>
+                        <div class="vlm-score-strip">
+                            <span><strong>GT</strong>1</span><span><strong>Pred</strong>1</span><span><strong>Match</strong>0.766</span><span><strong>Levels</strong>All levels match</span><span><strong>Reason</strong>0.473</span>
+                        </div>
+                        <table class="vlm-eval-table">
+                            <tbody>
+                                <tr><th>Overall Video Quality</th><td><span class="vlm-badge poor">Poor</span><p>Video is extremely blurry, shaky, and lacks clear object details, making it difficult to identify objects or actions.</p></td><td><span class="vlm-badge poor">Poor</span><p>Video is extremely blurry, shaky, and lacks clear object visibility, making it difficult to discern actions or final states.</p></td><td>0.737</td></tr>
+                                <tr><th>Instruction Following</th><td><span class="vlm-badge poor">Poor</span><p>The task 'put green bowl into pink plate' is not completed; the final state does not show a green bowl inside a pink plate.</p></td><td><span class="vlm-badge poor">Poor</span><p>The video does not clearly show the green bowl being placed into the pink plate; the final state is ambiguous and not visible.</p></td><td>0.503</td></tr>
+                                <tr><th>Physical Adherence</th><td><span class="vlm-badge unclear">Unclear</span><p>Due to severe visual corruption, it's impossible to assess physical interactions, contact, or stability.</p></td><td><span class="vlm-badge unclear">Unclear</span><p>Due to severe visual corruption and lack of clear contact or placement, physical interactions cannot be reliably assessed.</p></td><td>0.478</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="vlm-reasons"><div><strong>GT Reason</strong><p>The video is too corrupted to clearly identify objects or actions. The task is not completed, and the final state is ambiguous due to poor video quality.</p></div><div><strong>Pred Reason</strong><p>The video is severely corrupted with extreme blur and motion, preventing clear identification of objects or actions. The task of putting the green bowl into the pink plate is not visibly completed, and the final state is ambiguous. Therefore, the task is failed.</p></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vlm-panel" role="tabpanel" data-panel="score2">
+                <div class="video-grid video-grid--2col vlm-eval-grid">
+                    <div class="video-card vlm-video-card">
+                        <video src="video/vlm_evaluator/score2/score2_01.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+                        <div class="vlm-caption">Put banana into basket.</div>
+                        <div class="vlm-score-strip">
+                            <span><strong>GT</strong>2</span><span><strong>Pred</strong>2</span><span><strong>Match</strong>0.801</span><span><strong>Levels</strong>All levels match</span><span><strong>Reason</strong>0.661</span>
+                        </div>
+                        <table class="vlm-eval-table">
+                            <tbody>
+                                <tr><th>Overall Video Quality</th><td><span class="vlm-badge medium">Medium</span><p>The video is clear with consistent views from three cameras, but the action is partially obscured by robotic arms and objects.</p></td><td><span class="vlm-badge medium">Medium</span><p>Video is clear but shows a split view; the right panel is often blurry or shows only a partial object.</p></td><td>0.290</td></tr>
+                                <tr><th>Instruction Following</th><td><span class="vlm-badge medium">Medium</span><p>The robot arm picks up the banana and moves it toward the basket, but the final placement is not clearly visible.</p></td><td><span class="vlm-badge medium">Medium</span><p>The robot arm picks up the banana and moves it toward the basket, but the final placement is not clearly shown.</p></td><td>0.922</td></tr>
+                                <tr><th>Physical Adherence</th><td><span class="vlm-badge medium">Medium</span><p>The banana is grasped and moved plausibly, but the interaction with the basket is not fully shown, leaving stability and containment ambiguous.</p></td><td><span class="vlm-badge medium">Medium</span><p>The banana is grasped and moved, but the video ends before confirming stable containment in the basket.</p></td><td>0.477</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="vlm-reasons"><div><strong>GT Reason</strong><p>The robot arm attempts to place the banana into the basket, showing meaningful progress. However, the final state is not clearly visible, making completion ambiguous and supporting a partial score.</p></div><div><strong>Pred Reason</strong><p>The robot successfully grasps the banana and moves it toward the basket, showing meaningful progress. However, the final state is not clearly visible, making completion ambiguous.</p></div></div>
+                    </div>
+                    <div class="video-card vlm-video-card">
+                        <video src="video/vlm_evaluator/score2/score2_02.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+                        <div class="vlm-caption">Put panda into pink plate.</div>
+                        <div class="vlm-score-strip">
+                            <span><strong>GT</strong>2</span><span><strong>Pred</strong>2</span><span><strong>Match</strong>0.788</span><span><strong>Levels</strong>All levels match</span><span><strong>Reason</strong>0.584</span>
+                        </div>
+                        <table class="vlm-eval-table">
+                            <tbody>
+                                <tr><th>Overall Video Quality</th><td><span class="vlm-badge medium">Medium</span><p>Three camera views are provided, but motion blur and varying camera angles reduce clarity in some frames.</p></td><td><span class="vlm-badge medium">Medium</span><p>Video is split into three views; middle and right panels are often blurry or obstructed, making detailed observation difficult.</p></td><td>0.238</td></tr>
+                                <tr><th>Instruction Following</th><td><span class="vlm-badge medium">Medium</span><p>The robot picks up the panda toy and moves it toward the pink plate, but the final placement is not clearly completed.</p></td><td><span class="vlm-badge medium">Medium</span><p>Robot arm picks up the panda toy and moves it toward the pink plate, but the final placement is not clearly shown.</p></td><td>0.883</td></tr>
+                                <tr><th>Physical Adherence</th><td><span class="vlm-badge medium">Medium</span><p>The robot arm makes plausible contact with the panda toy and moves it, but the final state in the pink plate is ambiguous.</p></td><td><span class="vlm-badge medium">Medium</span><p>The robot arm grasps the panda and moves it, but the final state of the panda on the plate is ambiguous due to camera angles.</p></td><td>0.593</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="vlm-reasons"><div><strong>GT Reason</strong><p>The robot successfully picks up the panda toy and initiates movement toward the pink plate, showing meaningful progress. However, the final placement into the plate is not clearly visible or completed in the provided frames.</p></div><div><strong>Pred Reason</strong><p>The robot arm successfully picks up the panda and moves it toward the pink plate, showing progress. However, the final placement is not clearly visible, making the task completion ambiguous.</p></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vlm-panel" role="tabpanel" data-panel="score3">
+                <div class="video-grid video-grid--2col vlm-eval-grid">
+                    <div class="video-card vlm-video-card">
+                        <video src="video/vlm_evaluator/score3/score3_01.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+                        <div class="vlm-caption">Put panda into pink plate.</div>
+                        <div class="vlm-score-strip">
+                            <span><strong>GT</strong>3</span><span><strong>Pred</strong>3</span><span><strong>Match</strong>0.787</span><span><strong>Levels</strong>All levels match</span><span><strong>Reason</strong>0.554</span>
+                        </div>
+                        <table class="vlm-eval-table">
+                            <tbody>
+                                <tr><th>Overall Video Quality</th><td><span class="vlm-badge good">Good</span><p>All three camera views are clear, showing consistent object positions and robot movements without major artifacts.</p></td><td><span class="vlm-badge good">Good</span><p>The video is clear, with consistent object identities and smooth camera movements across all three views.</p></td><td>0.482</td></tr>
+                                <tr><th>Instruction Following</th><td><span class="vlm-badge good">Good</span><p>The robot picks up the panda toy and places it directly onto the pink plate, achieving the requested action.</p></td><td><span class="vlm-badge good">Good</span><p>The robot successfully picks up the panda toy and places it into the pink plate, as instructed.</p></td><td>0.639</td></tr>
+                                <tr><th>Physical Adherence</th><td><span class="vlm-badge good">Good</span><p>The robot arm makes plausible contact with the panda, lifts it, moves it, and releases it stably onto the plate.</p></td><td><span class="vlm-badge good">Good</span><p>The robot's gripper makes plausible contact with the panda, lifts it, and releases it into the plate without physical impossibilities.</p></td><td>0.637</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="vlm-reasons"><div><strong>GT Reason</strong><p>The video clearly shows the robot arm successfully grasping the panda toy, transporting it, and placing it into the pink plate. All three views confirm the action and stable final state.</p></div><div><strong>Pred Reason</strong><p>The video shows the robot arm picking up the panda toy and placing it into the pink plate, which is the correct final state. The action is completed, and the final state is stable and correct.</p></div></div>
+                    </div>
+                    <div class="video-card vlm-video-card">
+                        <video src="video/vlm_evaluator/score3/score3_02.mp4" controls autoplay muted loop playsinline preload="metadata"></video>
+                        <div class="vlm-caption">Put panda into pink plate.</div>
+                        <div class="vlm-score-strip">
+                            <span><strong>GT</strong>3</span><span><strong>Pred</strong>3</span><span><strong>Match</strong>0.754</span><span><strong>Levels</strong>All levels match</span><span><strong>Reason</strong>0.588</span>
+                        </div>
+                        <table class="vlm-eval-table">
+                            <tbody>
+                                <tr><th>Overall Video Quality</th><td><span class="vlm-badge good">Good</span><p>Three synchronized camera views are clear, with consistent object identity and no major visual artifacts.</p></td><td><span class="vlm-badge good">Good</span><p>The video is clear, with consistent object identities and smooth camera movements across all three views.</p></td><td>0.453</td></tr>
+                                <tr><th>Instruction Following</th><td><span class="vlm-badge good">Good</span><p>The robot arm picks up the panda toy and places it directly into the pink plate, fulfilling the instruction.</p></td><td><span class="vlm-badge good">Good</span><p>The robot correctly identifies the panda and moves it into the pink plate, completing the task as instructed.</p></td><td>0.490</td></tr>
+                                <tr><th>Physical Adherence</th><td><span class="vlm-badge good">Good</span><p>The robot's grasp is stable, the panda is lifted and moved plausibly, and it lands securely inside the plate.</p></td><td><span class="vlm-badge good">Good</span><p>The robot's gripper makes plausible contact with the panda, lifts it, and places it stably onto the plate.</p></td><td>0.418</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="vlm-reasons"><div><strong>GT Reason</strong><p>The video clearly shows the robot successfully picking up the panda and placing it into the pink plate, with stable motion and a correct final state across all three views.</p></div><div><strong>Pred Reason</strong><p>The video shows the robot successfully picking up the panda and placing it into the pink plate, with clear visual evidence of the final state. All aspects of the task are completed correctly and plausibly.</p></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         
 
@@ -1760,6 +1886,34 @@
                 });
             }
 
+            /* ========== VLM EVALUATOR TABS ========== */
+            function setupVlmEvaluatorTabs() {
+                var tabs = document.querySelectorAll('.vlm-tab');
+                var panels = document.querySelectorAll('.vlm-panel');
+                if (!tabs.length || !panels.length) return;
+
+                tabs.forEach(function (tab) {
+                    tab.addEventListener('click', function () {
+                        var target = tab.getAttribute('data-tab');
+                        tabs.forEach(function (t) {
+                            t.classList.remove('active');
+                            t.setAttribute('aria-selected', 'false');
+                        });
+                        panels.forEach(function (p) {
+                            p.classList.remove('active');
+                            p.querySelectorAll('video').forEach(function (v) { v.pause(); });
+                        });
+                        tab.classList.add('active');
+                        tab.setAttribute('aria-selected', 'true');
+                        var panel = document.querySelector('.vlm-panel[data-panel="' + target + '"]');
+                        if (panel) {
+                            panel.classList.add('active');
+                            panel.querySelectorAll('video').forEach(function (v) { v.play().catch(function () {}); });
+                        }
+                    });
+                });
+            }
+
             /* ========== RL AUTO CAROUSEL ========== */
             function setupRlResults() {
                 document.querySelectorAll('.rl-carousel').forEach(function (carousel) {
@@ -1836,6 +1990,7 @@
                 setupSmoothScroll();
                 setupCcTabs();
                 setupOodTabs();
+                setupVlmEvaluatorTabs();
                 setupRlResults();
                 setupTableRipple();
                 setupVisitorCounter();
